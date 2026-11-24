@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taller de Calidad: ISO 9001, FODA y Organización</title>
+<style>
+:root{--ink:#3c3c3c;--line:#e5e5e5;--g:#58cc02;--gd:#58a700;--b:#1cb0f6;--bd:#1899d6;--y:#ffc800;--r:#ff4b4b;--mut:#777}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:700 16px/1.5 Nunito,"Varela Round","Trebuchet MS",system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:2px solid var(--line);padding:8px 12px}
+.bar{max-width:760px;margin:auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+h1{font-size:1.25rem;margin:0;color:var(--g);font-weight:900}
+.hud{display:flex;gap:4px;flex-wrap:wrap;font-weight:900;font-size:.9rem}.hud span{padding:2px 8px}
+#hS{color:var(--b)}#hR{color:#ff9600}#hP{color:var(--gd)}
+main{max-width:760px;margin:auto;padding:16px}
+button{font:inherit;font-weight:800;cursor:pointer;background:#fff;color:var(--ink);border:2px solid var(--line);border-bottom-width:5px;border-radius:14px;padding:10px 16px;transition:transform .08s,filter .15s}
+button:hover{filter:brightness(.96)}button:active{transform:translateY(3px);border-bottom-width:2px;margin-bottom:3px}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+button:disabled{cursor:default}
+.pri{background:var(--g);color:#fff;border-color:var(--gd)}.pri:disabled{background:var(--line);border-color:#cfcfcf;color:#aaa}
+header button{padding:4px 10px;font-size:.85rem;border-bottom-width:3px}
+.card{border:2px solid var(--line);border-radius:20px;padding:16px;margin:0 0 16px;animation:pop .45s both}
+@keyframes pop{from{opacity:0;transform:scale(.93) translateY(12px)}}
+.mh{background:var(--c);color:#fff;border-radius:14px;padding:12px 14px;margin-bottom:12px;box-shadow:0 5px 0 rgba(0,0,0,.2)}
+.mh h2{margin:0;font-size:1.15rem;font-weight:900}.mh small{opacity:.9}
+.acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.acts button{text-align:left;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.acts button:hover{border-color:var(--c)}
+.acts button.done{background:#fff7d1;border-color:var(--y)}
+.mas{display:flex;gap:14px;align-items:center;margin-bottom:16px}.mas>div{flex:1}
+.o{font-size:3.2rem;animation:fl 2.4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-6px) rotate(-4deg)}}
+.prog{height:16px;background:var(--line);border-radius:8px;overflow:hidden;margin:6px 0}
+.prog i,.lp i{display:block;height:100%;background:var(--g);border-radius:8px;transition:width .5s;box-shadow:inset 0 5px 0 rgba(255,255,255,.3)}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}.lp{flex:1;height:16px;background:var(--line);border-radius:8px;overflow:hidden}.lp i{width:0}
+.back{padding:4px 12px}#hh{white-space:nowrap;font-size:.95rem}
+.big{font-size:1.2rem;font-weight:800;margin:6px 0 12px}.big2{font-size:4.5rem;animation:bn .8s}
+.opts{display:grid;gap:10px}.opts.row{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.opts button{text-align:left;font-size:1.02rem}.opts button:disabled{opacity:1}
+.opts button.ok{background:#d7ffb8;border-color:var(--g);color:#3a8a00;animation:bn .5s}
+.opts button.no{background:#ffdfe0;border-color:var(--r);color:#c62828;animation:sk .4s}
+@keyframes bn{30%{transform:scale(1.08)}60%{transform:scale(.97)}}
+@keyframes sk{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{margin-top:14px;padding:14px;border-radius:16px;animation:up .3s}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+.fb.ok{background:#d7ffb8;color:#3a8a00}.fb.no{background:#ffdfe0;color:#c62828}
+.fb b{display:block;font-size:1.1rem}
+.tok{background:#ddf4ff;border:2px solid var(--b);border-radius:16px;padding:16px;font-size:1.15rem;margin:6px 0 14px;animation:pop .3s}
+.pool{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+ol.seq{padding-left:24px}ol.seq li{margin:4px 0}li.ok{color:var(--gd)}li.no{color:var(--r)}
+label{display:block;margin:8px 0 2px;font-size:.9rem;color:var(--mut)}
+input,select{font:inherit;padding:10px;border:2px solid var(--line);border-radius:12px;width:100%;max-width:260px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 16px}
+dialog{border:0;border-radius:20px;max-width:640px;width:calc(100% - 24px);max-height:85vh;padding:0}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--b);color:#fff;position:sticky;top:0}
+.db{padding:8px 16px 16px}details{border-bottom:2px solid var(--line);padding:8px 0}summary{cursor:pointer;font-weight:800}
+details ul{margin:6px 0;padding-left:20px}
+.cf{position:fixed;top:-20px;width:10px;height:14px;z-index:99;pointer-events:none;animation:fall var(--d) ease-in forwards}
+@keyframes fall{to{transform:translate(var(--x),105vh) rotate(var(--r))}}
+.xp{position:fixed;z-index:99;font-weight:900;color:var(--y);font-size:1.7rem;pointer-events:none;text-shadow:0 2px 0 #b38f00;animation:xp .9s forwards}
+@keyframes xp{to{transform:translateY(-70px);opacity:0}}
+.toast{position:fixed;left:50%;top:80px;transform:translateX(-50%);background:var(--b);color:#fff;padding:10px 20px;border-radius:14px;z-index:99;box-shadow:0 5px 0 var(--bd);animation:tt 2s forwards;white-space:nowrap}
+@keyframes tt{0%{opacity:0;margin-top:-20px}10%,80%{opacity:1;margin-top:0}100%{opacity:0}}
+.ov{position:fixed;inset:0;background:rgba(255,255,255,.96);z-index:90;display:grid;place-items:center;text-align:center;padding:20px;animation:pop .3s}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
+.db{padding:12px}
+.gd{border:2px solid var(--line);border-left:8px solid var(--c);border-radius:16px;margin:10px 0;padding:0;overflow:hidden}
+.gd summary{padding:12px 14px;font-weight:900;font-size:1.05rem;list-style:none;background:color-mix(in srgb,var(--c) 16%,#fff);display:flex;gap:10px;align-items:center}
+.gd summary::-webkit-details-marker{display:none}
+.gd summary::after{content:'▾';margin-left:auto;transition:transform .2s}.gd[open] summary::after{transform:rotate(180deg)}
+.gd ul{list-style:none;margin:0;padding:8px 12px 12px}
+.gd li{padding:9px 12px;margin:7px 0;border-radius:12px;background:#f5f5f5;border-left:5px solid #d6d6d6;line-height:1.6}
+.gd li i{color:#666;font-weight:700}
+.lf,.ln1{background:#e6f9d3!important;border-left-color:var(--g)!important}.ld{background:#ffe5e6!important;border-left-color:var(--r)!important}
+.lo{background:#def3ff!important;border-left-color:var(--b)!important}.la{background:#fff0d9!important;border-left-color:#ff9600!important}
+.ln9{background:#f1e4ff!important;border-left-color:#ce82ff!important}
+.tip{background:#fff6cc!important;border-left-color:var(--y)!important}.tip::before{content:'💡 '}
+.ex{background:#eaeeff!important;border-left-color:#7c8cff!important}.ex::before{content:'📝 '}
+.sub{background:none!important;border:0!important;font-weight:900;padding:4px 2px;margin-top:14px;color:var(--mut)}
+mark{font-weight:900;padding:1px 6px;border-radius:6px}
+.k-f,.k-n1{background:#c9f2a0;color:#2f7a00}.k-d{background:#ffc9cb;color:#b3202a}.k-o,.k-fd{background:#bfe8ff;color:#0b6ea3}
+.k-a,.k-cm{background:#ffdcae;color:#a85a00}.k-n9{background:#e3c8ff;color:#7a2fc2}
+body{transition:background .6s,color .6s}
+header .hb{background:#ff5a1f;color:#fff;border-color:#c23c0a;animation:pl 2s infinite}
+@keyframes pl{50%{box-shadow:0 0 0 6px rgba(255,90,31,.28)}}
+.o{position:relative;display:inline-block}
+.dv{filter:hue-rotate(-25deg) saturate(2) drop-shadow(0 0 10px #ff3b1f);animation:fl 1.1s ease-in-out infinite}
+.dv::before,.dv::after{content:'';position:absolute;top:-4px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:22px solid #e5201f}
+.dv::before{left:6px;transform:rotate(-20deg)}.dv::after{right:6px;transform:rotate(20deg)}
+.warp{position:fixed;inset:0;z-index:200;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;animation:wp .7s ease-out both;transition:opacity .6s}
+.warp.hot{background:radial-gradient(circle at var(--x) var(--y),#ffd400,#ff5a1f 30%,#8a0f0f 65%,#140a14)}
+.warp.cool{background:radial-gradient(circle at var(--x) var(--y),#fff,#bfe8ff 35%,#58cc02);color:#1a7f1a}
+.warp.out{opacity:0}
+@keyframes wp{from{clip-path:circle(0 at var(--x) var(--y))}to{clip-path:circle(150% at var(--x) var(--y))}}
+.wt{font-size:2.6rem;font-weight:900;line-height:1.15;text-shadow:0 4px 0 rgba(0,0,0,.3);animation:wtp .6s .3s both}
+.wt small{display:block;font-size:1rem;margin-top:8px}
+@keyframes wtp{from{transform:scale(.3);opacity:0}60%{transform:scale(1.15)}to{transform:scale(1);opacity:1}}
+.em{position:absolute;bottom:-60px;animation:rise var(--d) ease-in both}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg)}}
+main.shake{animation:shk .5s .2s}
+@keyframes shk{20%{transform:translate(-8px,4px)}40%{transform:translate(8px,-4px)}60%{transform:translate(-6px,-3px)}80%{transform:translate(5px,3px)}}
+body.dark{background:#150a16;color:#f3e7e7;--ink:#f3e7e7;--line:#41263a;--mut:#c9a6a6}
+body.dark header{background:#1f0e1d}body.dark h1{color:#ff5a1f}
+body.dark button{background:#2b1527;color:#f3e7e7}
+body.dark .pri{background:#ff5a1f;border-color:#c23c0a;color:#fff}
+body.dark .pri:disabled{background:#3a2430;color:#8a6a76;border-color:#41263a}
+body.dark header .hb{background:#58cc02;border-color:#3f8f00;animation:none}
+body.dark .acts button.done{background:#3a2a12;border-color:var(--y)}
+body.dark .opts button.ok,body.dark .fb.ok{background:#1d3a12;color:#a6f27a}
+body.dark .opts button.no,body.dark .fb.no{background:#4a1418;color:#ff9a9a}
+body.dark .tok{background:#2a1a3a;border-color:#ce82ff}
+body.dark .prog i,body.dark .lp i{background:#ff5a1f}
+body.dark input,body.dark select{background:#2b1527;color:inherit}
+body.dark dialog{background:#1f0e1d;color:#f3e7e7}
+body.dark .gd li{background:#2b1527}body.dark .gd li i{color:#c9a6a6}
+body.dark .gd summary{background:color-mix(in srgb,var(--c) 25%,#1f0e1d)}
+body.dark .lf,body.dark .ln1{background:#1d3a12!important}body.dark .ld{background:#4a1418!important}
+body.dark .lo{background:#10304a!important}body.dark .la{background:#4a2a0c!important}
+body.dark .ln9{background:#34194f!important}body.dark .tip{background:#4a3c0c!important}body.dark .ex{background:#1f2347!important}
+body.dark .ov{background:rgba(21,10,22,.96)}body.dark li.ok{color:#a6f27a}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <h1 id="ttl">🏭 Taller de Calidad</h1>
+  <div class="hud"><span id="hS"></span><span id="hR"></span><span id="hP"></span></div>
+  <div><button id="bH" class="hb">🔥 Modo difícil</button> <button id="bM">🔊</button> <button id="bG">📖 Apunte rápido</button> <button id="bX">Reiniciar</button></div>
+</div></header>
+<main id="app"></main>
+<dialog id="dlg"><div class="dh"><b>Apunte rápido</b><button id="bC">Cerrar</button></div><div class="db" id="gl"></div></dialog>
+
+<script>
+/* =====================================================================
+   DATOS EDUCATIVOS  (edite aquí para agregar o cambiar ejercicios)
+   Tipos de actividad:
+   - classify : tarjetas -> categorías.   items: [texto, índiceCategoría, explicación]
+   - sequence : ordenar pasos.            steps: lista en el orden CORRECTO
+   - scenario : consultor industrial.     qs: [{q, o:[[opción, explicación],...], c: índiceCorrecto}]
+   - calc     : cálculo de reposición.    cases: [{txt, c:consumo, t:entrega, m:mínimo, a:actual}]
+   ===================================================================== */
+const MODS = [
+ {id:'m1', ic:'📋', name:'Módulo 1: ISO 9001 y Gestión de Calidad', tag:'Foco principal', acts:[
+  {id:'m1a', type:'classify', title:'Calidad de producto o de proceso', cats:['Producto','Proceso'],
+   intro:'El producto se mide por el resultado final. El proceso, por cómo se trabaja.',
+   items:[
+    ['Un motor consume más combustible de lo especificado',0,'Es un defecto del resultado final: calidad de producto.'],
+    ['Un operario no sigue el procedimiento establecido',1,'Se trata de cómo se trabaja: falla de estandarización, es calidad de proceso.'],
+    ['Una pieza tiene medidas incorrectas',0,'La medida es una característica del resultado final: producto.'],
+    ['A una máquina no se le hacen mantenimientos preventivos',1,'El mantenimiento forma parte de las buenas prácticas de fabricación: proceso.'],
+    ['Las terminaciones del eje son rugosas',0,'Terminaciones, materias primas y manufactura forman la calidad del producto.'],
+    ['Se usan herramientas de medición sin calibrar',1,'Un proceso de calidad exige herramientas calibradas e inspecciones periódicas.']]},
+  {id:'m1b', type:'scenario', title:'Eficaz, eficiente y repetible', intro:'Un proceso de calidad cumple tres características.',
+   qs:[
+    {q:'Una línea logra siempre la pieza correcta, pero gasta el doble de material del necesario. ¿Qué característica falla?',
+     o:[['Eficacia: no logra el resultado','Sí logra el resultado esperado, así que es eficaz.'],['Eficiencia: no optimiza recursos','Logra el resultado, pero desperdicia recursos.'],['Repetibilidad: cambia cada vez','Dice que "siempre" logra la pieza correcta, entonces es repetible.']],c:1},
+    {q:'Dos turnos fabrican el mismo eje y uno sale perfecto y el otro defectuoso. ¿Qué falla?',
+     o:[['Eficacia','La eficacia es lograr el resultado esperado, y uno de los turnos lo logra.'],['Repetibilidad: no se obtiene siempre el mismo resultado','Un proceso repetible entrega el mismo resultado cada vez. Se resuelve estandarizando con un procedimiento.'],['Eficiencia','La consigna no habla del uso de recursos.']],c:1}]},
+  {id:'m1c', type:'classify', title:'Norma, Manual o Procedimiento', cats:['Norma','Manual','Procedimiento'],
+   intro:'Clasifique cada documento según su alcance.',
+   items:[
+    ['Paso a paso para cambiar un rodamiento',2,'Es una secuencia ordenada de pasos para una tarea específica: procedimiento.'],
+    ['ISO 9001',0,'Es un conjunto de requisitos de referencia y auditables: norma.'],
+    ['Documento con políticas, responsabilidades y procedimientos del sector de mantenimiento',1,'Reúne información amplia y varios procedimientos de un área: manual.'],
+    ['ISO 45001 (seguridad y salud ocupacional)',0,'Es otra norma: requisitos para uniformar actividades y facilitar auditorías.'],
+    ['Instrucción numerada para bloquear y etiquetar un tablero',2,'Describe pasos de una tarea concreta, alcance limitado: procedimiento.']]},
+  {id:'m1d', type:'classify', title:'ISO 9000 o ISO 9001', cats:['ISO 9000','ISO 9001'],
+   intro:'Una da el vocabulario y la otra los requisitos.',
+   items:[
+    ['Fundamentos y vocabulario de los sistemas de gestión de calidad',0,'ISO 9000 es la base conceptual: ayuda a comprender términos y principios.'],
+    ['Requisitos auditables que debe cumplir un SGC',1,'ISO 9001 establece requisitos y es la que se usa para demostrar conformidad.'],
+    ['Se usa como referencia para implementar y demostrar que se cumple',1,'Es la norma de requisitos: ISO 9001.'],
+    ['Explica conceptos, principios y términos de gestión de calidad',0,'Función conceptual: ISO 9000.']]},
+  {id:'m1e', type:'sequence', title:'Flujo del SGC', intro:'Ordene el recorrido de una bomba industrial por el sistema de gestión.',
+   steps:['Entrada: materiales, planos y especificaciones','Proceso: fabricación','Control: verificación, inspección y mediciones','Salida: bomba terminada','Cliente: aprobación'],
+   why:'El control va antes de la salida: se verifica la calidad antes de entregar, y el cliente cierra el ciclo con su aprobación.'},
+  {id:'m1f', type:'sequence', title:'Mantenimiento de un motor trifásico', intro:'Ordene los pasos: Previo, Durante y Luego del mantenimiento.',
+   steps:['Previo: identificar el motor (tag) y revisar historial y procedimientos','Previo: aplicar seguridad (LOTO y EPP)','Previo: preparar megóhmetro y pinza calibrados y repuestos','Durante: limpieza y cambio de rodamientos','Durante: medir y registrar aislamiento (megado) y continuidad de fases, y anotar anomalías','Luego: verificar corriente de arranque y marcha, y vibraciones','Luego: registrar el trabajo, cerrar la orden y actualizar el historial'],
+   why:'ISO 9001 pide trabajar de forma organizada y dejar registros. Primero se prepara y asegura, luego se ejecuta y mide, y al final se verifica y se documenta.'},
+  {id:'m1g', type:'scenario', title:'Simulador: control distinto en cada operario', intro:'Usted es el consultor.',
+   qs:[{q:'Una empresa detecta que cada operario realiza el control de calidad de manera diferente. ¿Qué documento conviene elaborar?',
+     o:[['Una norma ISO nueva','Las normas son requisitos externos de referencia; no se crean para una tarea puntual.'],['Un procedimiento','Define la secuencia ordenada de pasos para una tarea. Estandariza el orden, los pasos y la forma de controlar.'],['Un manual del sector','Reúne políticas y varios procedimientos, pero el problema puntual es la falta de pasos estándar.']],c:1},
+    {q:'Una fábrica produce 1000 piezas por día y 150 salen defectuosas (15%). ¿Cuál es la mejor solución?',
+     o:[['Descartar las piezas y seguir igual','Genera desperdicio de insumos y menor producción, afecta a empresa y clientes.'],['Mantenimiento preventivo y controles durante el proceso','Detecta errores antes y los corrige en el proceso, sin desperdiciar insumos.'],['Revisar solo al final de la jornada','Se detecta tarde, cuando ya se fabricaron las piezas defectuosas.']],c:1}]}
+ ]},
+ {id:'m2', ic:'🧭', name:'Módulo 2: FODA, CAME y relación con ISO 9001', tag:'Foco principal', acts:[
+  {id:'m2a', type:'classify', title:'Tablero FODA', cats:['Fortaleza','Debilidad','Oportunidad','Amenaza'],
+   intro:'Interno: Fortalezas y Debilidades. Externo: Oportunidades y Amenazas.',
+   items:[
+    ['Buena comunicación en el equipo',0,'Es una capacidad interna que beneficia a la organización: fortaleza.'],
+    ['Falta de material',1,'Es una carencia propia: debilidad.'],
+    ['Cambios tecnológicos favorables en el mercado',2,'Es un factor externo favorable: oportunidad.'],
+    ['Aparece un competidor con precios más bajos',3,'Es un riesgo externo que pone en peligro el negocio: amenaza.'],
+    ['Procesos ineficientes que limitan el rendimiento',1,'Está dentro de la empresa y limita el rendimiento: debilidad.'],
+    ['Personal con diversidad de conocimientos',0,'Es una ventaja interna: fortaleza.'],
+    ['Existen grupos más avanzados que otros en proyectos innovadores',2,'Una referencia externa para aprender: oportunidad.'],
+    ['Falta de conocimiento en algunas áreas',1,'Carencia interna: debilidad.']]},
+  {id:'m2b', type:'classify', title:'Matriz CAME: pasar a la acción', cats:['Corregir','Afrontar','Mantener','Explotar'],
+   intro:'Asigne la acción que corresponde a cada elemento del FODA.',
+   items:[
+    ['Capacitar al personal en las áreas donde falta conocimiento',0,'Corregir actúa sobre las debilidades.'],
+    ['Armar un plan de contingencia ante un competidor agresivo',1,'Afrontar se aplica a las amenazas.'],
+    ['Sostener las reuniones de equipo que mejoran la comunicación',2,'Mantener protege las fortalezas.'],
+    ['Adoptar una tecnología nueva disponible en el mercado',3,'Explotar aprovecha las oportunidades.'],
+    ['Comprar material faltante y ordenar el abastecimiento',0,'Falta de material es una debilidad: se corrige.']]},
+  {id:'m2c', type:'sequence', title:'Pasos de un análisis FODA', intro:'Ordene el método completo.',
+   steps:['Definir un objetivo claro','Armar un cuadro (matriz 2x2) para identificar todos los elementos','Generar ideas en equipo con brainstorming honesto','Pasar a la acción aplicando CAME'],
+   why:'Sin objetivo el diagnóstico se dispersa. CAME es el complemento que convierte el diagnóstico en acciones.'},
+  {id:'m2d', type:'scenario', title:'Simulador: FODA e ISO 9001', intro:'Relacione las herramientas.',
+   qs:[{q:'¿Qué relación existe entre el FODA y la ISO 9001?',
+     o:[['No tienen relación: el FODA es de marketing','ISO 9001 pide analizar el contexto de la organización, y el FODA sirve para eso.'],['ISO 9001 exige analizar el contexto (cuestiones internas y externas) y gestionar riesgos; el FODA diagnostica ese contexto y CAME lo convierte en acciones','Es correcto: el FODA da el diagnóstico y CAME produce acciones preventivas y de mejora continua dentro del SGC.'],['El FODA reemplaza al SGC','El FODA es una herramienta puntual; el SGC es una forma organizada de gestionar la empresa.']],c:1},
+    {q:'En el FODA, "cuestiones internas" y "cuestiones externas" de ISO 9001 se corresponden con:',
+     o:[['Internas: F y D. Externas: O y A','Correcto: lo propio (F y D) y lo del entorno (O y A).'],['Internas: O y A. Externas: F y D','Está invertido: las oportunidades y amenazas vienen del entorno.'],['Todas son internas','Oportunidades y amenazas son factores externos.']],c:0}]}
+ ]},
+ {id:'m3', ic:'📦', name:'Módulo 3: Organización, estructuras y depósitos', tag:'Base', acts:[
+  {id:'m3a', type:'classify', title:'Administrar o gestionar', cats:['Administrar','Gestionar'],
+   intro:'Administrar es planificar y organizar recursos. Gestionar es llevar el plan a la práctica.',
+   items:[
+    ['Definir el presupuesto y los recursos del mes',0,'Planificar y organizar: administrar.'],
+    ['Coordinar a los técnicos para ejecutar el plan de mantenimiento',1,'Llevar a la acción un plan ya hecho: gestionar.'],
+    ['Planificar mantenimiento preventivo para toda la planta',0,'Es planificación previa: administrar.'],
+    ['Dirigir la reparación el día que ocurre una falla',1,'Es ejecutar en la práctica: gestionar.']]},
+  {id:'m3b', type:'classify', title:'Estructura organizacional', cats:['Jerárquica','Plana','Matricial'],
+   intro:'Jerárquica: piramidal, un solo mando. Plana: sin mandos intermedios. Matricial: dos jefes.',
+   items:[
+    ['Metalúrgica de 60 empleados con procesos repetitivos y órdenes cruzadas de supervisores',0,'Necesita unidad de mando clara: cada operario responde a un solo supervisor.'],
+    ['Startup IoT de 12 técnicos con cuello de botella en el fundador',1,'Estructura ágil para pocas personas; con líderes intermedios para descentralizar decisiones operativas.'],
+    ['Empresa de automatización con varios proyectos y recursos duplicados',2,'El jefe de proyecto organiza plazos y recursos; el jefe funcional asegura la calidad técnica.'],
+    ['Comunicación solo entre niveles contiguos, sin saltear niveles',0,'Es una característica de la estructura jerárquica.'],
+    ['Cada trabajador responde a un jefe funcional y a un jefe de proyecto',2,'Esa doble dependencia es la matricial; exige mucha coordinación.']]},
+  {id:'m3c', type:'classify', title:'Depósito centralizado o descentralizado', cats:['Centralizado','Descentralizado'],
+   intro:'Elija según las ventajas y riesgos descritos.',
+   items:[
+    ['Un único depósito con control más fácil',0,'Es la ventaja del centralizado.'],
+    ['Riesgo de duplicar stock',1,'Con varios depósitos por sector puede haber stock duplicado.'],
+    ['Respuesta rápida y menor transporte interno',1,'Los depósitos están cerca de cada sector.'],
+    ['Si falla, puede afectar a toda la empresa y provocar demoras',0,'Depende de un solo punto.']]},
+  {id:'m3d', type:'classify', title:'Trazabilidad', cats:['Hacia atrás','Interna','Hacia adelante'],
+   intro:'Seguir el recorrido de un material desde su ingreso hasta su uso.',
+   items:[
+    ['Saber de qué proveedor viene un material',0,'Origen: trazabilidad hacia atrás.'],
+    ['Ver los movimientos dentro del depósito',1,'Es la trazabilidad interna.'],
+    ['Saber en qué equipo se usó un repuesto',2,'Destino y uso: hacia adelante.'],
+    ['Consultar la ubicación y fecha de ingreso de un lote',1,'Datos internos del depósito: trazabilidad interna.']]},
+  {id:'m3e', type:'calc', title:'Reto de cálculo de depósito', intro:'Punto de reposición = (Consumo semanal × Tiempo de entrega) + Stock mínimo.',
+   cases:[
+    {txt:'Una empresa consume 5 rodamientos por semana. El proveedor tarda 3 semanas en entregar. Mantiene un stock de seguridad de 10 y hoy tiene 20.',c:5,t:3,m:10,a:20},
+    {txt:'Se consumen 8 filtros por semana. El proveedor tarda 2 semanas. El stock mínimo es 12 y hoy hay 30.',c:8,t:2,m:12,a:30}]}
+ ]},
+ {id:'m4', ic:'🎯', name:'Módulo 4: Modo desafío', tag:'Estilo evaluación', acts:[
+  {id:'m4a', type:'scenario', title:'Caso 1: planta con 18% de tiempo parado', intro:'Una empresa lo contrata para mejorar el mantenimiento de una planta automatizada.',
+   qs:[{q:'La planta está parada el 18% del tiempo por fallas no planificadas. ¿Qué está fallando?',
+     o:[['Solo un problema técnico de los equipos','Hay una causa más profunda: el equipo actúa sin planificación previa.'],['Es una falla de administración: falta planeamiento preventivo y el mantenimiento es reactivo','Correcto. No es solo técnico, también es un problema de administración y por lo tanto de gestión.'],['Es un problema del cliente','Nada indica que el cliente sea responsable.']],c:1},
+    {q:'¿Qué consecuencias tiene una parada de planta?',
+     o:[['Retrasos en la producción y pérdidas económicas por reparaciones','Correcto: se pierde tiempo productivo y se gasta en reparaciones urgentes.'],['Ninguna si se repara rápido','Cada parada no planificada interrumpe la producción.'],['Solo se afecta al sector de mantenimiento','Se afecta toda la cadena productiva.']],c:0}]},
+  {id:'m4b', type:'scenario', title:'Caso 2: elija la estructura', intro:'Responda como consultor.',
+   qs:[{q:'Metalúrgica de 60 empleados, procesos repetitivos y órdenes cruzadas de distintos supervisores. ¿Qué estructura?',
+     o:[['Jerárquica','Unidad de mando: cada operario sabe a quién obedecer y consultar, con control más claro.'],['Plana','Con 60 personas y procesos que exigen control estricto, faltaría orden.'],['Matricial','Agrega un segundo jefe y empeoraría las órdenes cruzadas.']],c:0},
+    {q:'Startup IoT de 12 empleados: el fundador toma todas las decisiones y se generan cuellos de botella.',
+     o:[['Jerárquica rígida','Concentra más aún las decisiones.'],['Plana con líderes intermedios','Descentraliza decisiones operativas y mantiene al fundador como cabeza estratégica.'],['Matricial','Excesiva coordinación para 12 personas.']],c:1},
+    {q:'Empresa de automatización con proyectos simultáneos, recursos duplicados y retrasos por mala asignación del personal.',
+     o:[['Plana','No resuelve la asignación de recursos entre proyectos.'],['Jerárquica','Cada área quedaría aislada.'],['Matricial','El jefe de proyecto organiza tiempos, tareas y recursos; el jefe funcional asegura la calidad técnica.']],c:2}]},
+  {id:'m4c', type:'calc', title:'Caso 3: ¿hay que comprar?', intro:'Calcule el punto de reposición y decida.',
+   cases:[{txt:'Consumo 5 por semana, entrega en 3 semanas, mínimo 10 y hay 20 en el depósito.',c:5,t:3,m:10,a:20},
+    {txt:'Consumo 6 por semana, entrega en 4 semanas, mínimo 15 y hay 50 en el depósito.',c:6,t:4,m:15,a:50}]},
+  {id:'m4d', type:'classify', title:'Caso 5: producto o proceso', cats:['Producto','Proceso'],
+   intro:'Aplique el criterio sin ayudas.',
+   items:[
+    ['Motor que gasta más de lo especificado',0,'Resultado final: producto.'],
+    ['Operario que no sigue los pasos',1,'Forma de trabajar: proceso.'],
+    ['Pieza mal medida',0,'Resultado final: producto.'],
+    ['Falta de mantenimiento preventivo',1,'Un buen mantenimiento previene fallas y asegura procesos eficaces y eficientes: proceso.']]},
+  {id:'m4e', type:'classify', title:'Caso 6: norma, manual o procedimiento', cats:['Norma','Manual','Procedimiento'],
+   intro:'Última clasificación. Si cada operario controla distinto, falta un procedimiento.',
+   items:[
+    ['Paso a paso para cambiar un motor',2,'Pasos ordenados de una tarea específica: procedimiento.'],
+    ['ISO 9001',0,'Requisitos auditables de referencia: norma.'],
+    ['Políticas y responsabilidades del sector',1,'Documento general de un área: manual.']]}
+ ]} ,
+ {id:'m5', hard:true, ic:'🔥', name:'Modo difícil: FODA e ISO 9001', tag:'Nivel experto · solo 3 vidas por lección', acts:[
+  {id:'m5a', hard:true, type:'scenario', title:'Casos FODA con trampa', intro:'Cuidado: acá las opciones incorrectas parecen razonables.',
+   qs:[
+    {q:'Una metalúrgica tiene operarios con 20 años de experiencia, su proveedor de acero subió 40% los precios y sus máquinas tienen 30 años. ¿Qué clasificación es correcta?',
+     o:[['Fortaleza: operarios. Debilidad: precio del proveedor. Amenaza: máquinas antiguas','Invierte lo interno y lo externo: el precio del proveedor viene del entorno y las máquinas son propias.'],['Fortaleza: operarios. Amenaza: aumento del proveedor. Debilidad: máquinas antiguas','Correcto. La experiencia y las máquinas son internas (F y D); el aumento de precios viene del entorno (A).'],['Oportunidad: operarios. Amenaza: máquinas antiguas. Debilidad: precio del proveedor','La experiencia del personal es interna, por eso es fortaleza y no oportunidad.']],c:1},
+    {q:'Una nueva exigencia del mercado pide certificación ISO 9001 a los proveedores del sector y nuestra empresa no tiene SGC. ¿Cómo se analiza?',
+     o:[['Ambos son debilidades, porque nos afectan','Lo que nos afecta no es necesariamente interno. La exigencia viene del entorno.'],['La exigencia es externa (amenaza si no actuamos, oportunidad si nos certificamos) y la falta de SGC es una debilidad interna','Correcto. Lo decisivo es separar lo interno de lo externo. CAME luego define si se corrige o se explota.'],['La exigencia es una debilidad y la falta de SGC es una amenaza','Está invertido: lo propio es interno (debilidad) y lo del entorno es externo.']],c:1},
+    {q:'El equipo debe armar un plan CAME para esto: Debilidad = personal sin formación en ISO 9001. Amenaza = competidores ya certificados. ¿Cuál es el plan coherente?',
+     o:[['Mantener la debilidad y explotar la amenaza','Las debilidades se corrigen y las amenazas se afrontan; no se mantienen ni se explotan.'],['Corregir la debilidad (capacitar al personal) y afrontar la amenaza (plan para certificarse o diferenciarse)','Correcto. Corregir actúa sobre debilidades y afrontar sobre amenazas.'],['Afrontar la debilidad y corregir la amenaza','Está cruzado: se corrigen las debilidades y se afrontan las amenazas.']],c:1},
+    {q:'Un integrante anota "crisis económica en el sector" como debilidad. ¿Cuál es el error?',
+     o:[['Ninguno: lo que perjudica a la empresa es una debilidad','Las debilidades son carencias propias de la organización.'],['Es un factor externo que pone en riesgo el negocio: es una amenaza','Correcto. Una crisis del sector viene del entorno, no de la organización.'],['Es una oportunidad porque nos obliga a mejorar','No es una situación favorable del entorno, por lo tanto no es oportunidad.']],c:1},
+    {q:'El equipo empieza anotando ideas en la matriz sin definir antes un objetivo. ¿Qué consecuencia tiene saltarse el paso 1?',
+     o:[['El diagnóstico queda disperso: sin objetivo no se sabe qué es relevante','Correcto. El objetivo claro es el primer paso porque guía qué factores importan.'],['Ninguna, el objetivo se define al final con CAME','CAME es el paso 4 y se aplica sobre un diagnóstico que ya tiene objetivo.'],['La matriz deja de ser 2x2','La estructura no cambia; lo que falla es la orientación del análisis.']],c:0},
+    {q:'Un auditor pregunta cómo analiza la empresa su contexto y sus riesgos. ¿Cuál es la mejor evidencia coherente con ISO 9001?',
+     o:[['El manual del sector','El manual reúne políticas y procedimientos, pero no muestra el análisis del contexto.'],['Un FODA actualizado con acciones CAME registradas y su seguimiento','Correcto. El FODA diagnostica el contexto interno y externo, y CAME lo convierte en acciones preventivas y de mejora continua dentro del SGC.'],['El certificado de otra empresa','No demuestra el análisis propio de la organización.']],c:1}]},
+  {id:'m5b', hard:true, type:'classify', title:'FODA sin pistas', cats:['Fortaleza','Debilidad','Oportunidad','Amenaza'],
+   intro:'Interno o externo, positivo o negativo. Sin ayudas.',
+   items:[
+    ['Equipo sin procedimiento estandarizado para el control de calidad',1,'Es una carencia propia que genera procesos inconsistentes: debilidad.'],
+    ['Subsidio estatal para modernizar maquinaria',2,'Es una situación favorable del entorno: oportunidad.'],
+    ['Personal capacitado en ISO 9001',0,'Es una capacidad interna que destaca a la organización: fortaleza.'],
+    ['Competidor certificado ISO 9001 que capta clientes',3,'Es un factor externo que pone en riesgo el negocio: amenaza.'],
+    ['Alta rotación del personal técnico',1,'Aunque el mercado influya, la rotación es un problema interno que limita el rendimiento: debilidad.'],
+    ['Crisis económica que reduce la demanda del sector',3,'Es un factor externo que pone en riesgo el negocio: amenaza.'],
+    ['Herramientas de medición calibradas y con registros',0,'Es una ventaja interna de proceso: fortaleza.'],
+    ['Mantenimiento reactivo que provoca 18% de paradas',1,'Es un proceso ineficiente propio que limita el rendimiento: debilidad.'],
+    ['Sensores inteligentes cada vez más baratos en el mercado',2,'Es un cambio tecnológico favorable del entorno: oportunidad.']]},
+  {id:'m5c', hard:true, type:'classify', title:'CAME aplicado', cats:['Corregir','Afrontar','Mantener','Explotar'],
+   intro:'Cada acción apunta a un tipo de factor distinto. Elija con criterio.',
+   items:[
+    ['Elaborar un procedimiento de control porque cada operario mide distinto',0,'El problema es una debilidad interna: se corrige.'],
+    ['Firmar un contrato con un segundo proveedor ante el riesgo de desabastecimiento',1,'Se prepara a la empresa frente a una amenaza externa: afrontar.'],
+    ['Sostener el programa de calibración de herramientas que ya funciona',2,'Protege una fortaleza existente: mantener.'],
+    ['Postular a un subsidio para incorporar sensores inteligentes',3,'Aprovecha una oportunidad del entorno: explotar.'],
+    ['Armar un plan de retención del personal ante un competidor que ofrece mejores sueldos',1,'Es una amenaza externa: afrontar.'],
+    ['Replicar el trabajo en equipo del sector que más cumple',2,'Consolida una fortaleza: mantener.'],
+    ['Capacitar al personal en ISO 9001 antes de la auditoría',0,'La falta de conocimiento es una debilidad: corregir.']]},
+  {id:'m5d', hard:true, type:'classify', title:'ISO 9000, ISO 9001, procedimiento o manual', cats:['ISO 9000','ISO 9001','Procedimiento','Manual'],
+   intro:'Cuatro categorías, varias parecidas entre sí.',
+   items:[
+    ['Define qué significan "proceso" y "conformidad"',0,'Es vocabulario y base conceptual: ISO 9000.'],
+    ['Se usa como referencia para demostrar que el SGC cumple los requisitos',1,'Es la norma de requisitos auditables: ISO 9001.'],
+    ['Pasos 1 a 5 para calibrar el megóhmetro',2,'Secuencia ordenada para una tarea específica: procedimiento.'],
+    ['Documento del sector con objetivo, responsabilidades, normas de seguridad y procedimientos de inspección',3,'Reúne información amplia y varios procedimientos: manual.'],
+    ['Establece fundamentos para comprender la gestión de calidad',0,'Función conceptual: ISO 9000.'],
+    ['Una auditoría verifica el cumplimiento de sus requisitos',1,'Los requisitos auditables son de ISO 9001.'],
+    ['Desconectar, bloquear y etiquetar, retirar protecciones, extraer el rodamiento',2,'Pasos ordenados de una tarea concreta: procedimiento.'],
+    ['Incluye informe de registro, procedimientos de reparación y responsabilidades',3,'Alcance general con varios procedimientos: manual.']]},
+  {id:'m5e', hard:true, type:'scenario', title:'ISO 9001 en la práctica', intro:'Casos reales de mantenimiento y gestión.',
+   qs:[
+    {q:'Un técnico cambia el rodamiento y el motor funciona bien, pero no registra el megado, los repuestos ni las anomalías. ¿Qué falla desde ISO 9001?',
+     o:[['Nada, porque el motor funciona','Funcionar no alcanza: sin registros no se puede demostrar ni auditar lo hecho.'],['Faltan los registros: no se puede demostrar la calidad del trabajo ni mantener el historial del equipo','Correcto. ISO 9001 se basa en trabajar de forma organizada y dejar evidencia.'],['El motor es de mala calidad','El problema está en el proceso, no necesariamente en el producto.']],c:1},
+    {q:'Se mide el aislamiento con un megóhmetro cuyo plazo de calibración venció. ¿Cuál es el problema de fondo?',
+     o:[['Es un problema de producto: el motor estaba defectuoso','Las medidas no son confiables, por lo tanto no se sabe nada del producto.'],['Es un problema de proceso: sin herramientas calibradas las mediciones no son confiables','Correcto. Un proceso de calidad exige procedimientos definidos, herramientas calibradas e inspecciones periódicas.'],['No es un problema si el valor parece razonable','El valor no es verificable con una herramienta sin calibrar.']],c:1},
+    {q:'Una empresa entrega buen producto final pero no tiene registros ni procedimientos. ¿Tiene gestión de calidad según ISO 9001?',
+     o:[['Sí, porque el producto cumple','La calidad no depende solamente del producto final.'],['No necesariamente: la calidad también depende de cómo está organizada y controlada la empresa, y un buen resultado sin proceso estandarizado no es repetible','Correcto. Es la idea fundamental de la familia ISO 9000.'],['Sí, porque tiene clientes','Tener clientes no demuestra que se cumplan los requisitos del SGC.']],c:1},
+    {q:'En el flujo del SGC, una fábrica inspecciona las bombas después de enviarlas al cliente. ¿Qué está mal?',
+     o:[['El control debe estar antes de la salida, para verificar antes de entregar','Correcto. El flujo es Entrada, Proceso, Control, Salida y Cliente.'],['La entrada debe ir al final','La entrada son los materiales y planos: va primero.'],['El cliente debe aprobar antes del proceso','El cliente aprueba el producto terminado.']],c:0},
+    {q:'El gerente dice: "Tenemos un manual, por lo tanto tenemos un SGC". ¿Qué falta aclarar?',
+     o:[['Nada, el manual es el SGC','Un SGC no es solamente un documento.'],['El SGC es el conjunto de elementos, procesos, procedimientos, responsabilidades y recursos con los que se dirige y controla la calidad','Correcto. Es una forma organizada de gestionar la empresa y no solamente un documento.'],['Solo falta un certificado','El certificado no es la definición del SGC.']],c:1},
+    {q:'Una auditoría de conformidad del SGC se realiza contra los requisitos de:',
+     o:[['ISO 9000','ISO 9000 da conceptos y vocabulario; no es la que establece los requisitos.'],['ISO 9001','Correcto. Establece los requisitos auditables que debe cumplir un SGC.'],['ISO 14001','Es la norma de gestión ambiental.']],c:1}]},
+  {id:'m5f', hard:true, type:'sequence', title:'Del FODA a la mejora continua', intro:'Ordene el camino completo desde el diagnóstico hasta el SGC.',
+   steps:['Definir un objetivo claro','Armar la matriz 2x2 con factores internos y externos','Generar ideas en equipo con brainstorming honesto','Aplicar CAME para definir acciones','Incorporar las acciones preventivas y de mejora al SGC','Verificar los resultados y volver a analizar el contexto'],
+   why:'El objetivo guía el diagnóstico, el brainstorming lo completa y CAME lo convierte en acciones. Esas acciones pasan al SGC y se revisan, y ahí está la mejora continua.'}
+ ]},
+ {id:'m6', hard:true, ic:'⛓️', name:'Infierno de la gestión: organización y stock', tag:'Nivel experto · solo 3 vidas por lección', acts:[
+  {id:'m6a', hard:true, type:'scenario', title:'Estructuras y gestión bajo presión', intro:'Casos con decisiones que parecen lógicas pero tienen trampa.',
+   qs:[
+    {q:'Una startup de 15 técnicos tiene cuello de botella en el fundador, que aprueba todo. Propone sumar tres niveles de supervisores con aprobación escalonada. ¿Es buena idea?',
+     o:[['Sí: más niveles reparten el trabajo','Más niveles significan más aprobaciones sin saltear niveles: el cuello de botella empeora.'],['No: conviene una estructura plana con líderes intermedios que decidan lo operativo no vital','Correcto. Se descentralizan decisiones operativas y el fundador conserva las estratégicas.'],['Sí, pero con estructura matricial','La matricial exige mucha coordinación y no es necesaria para 15 personas con proyectos pequeños.']],c:1},
+    {q:'En una metalúrgica de 60 empleados los operarios reciben órdenes de varios supervisores. Para resolverlo en una estructura jerárquica, ¿qué debe cumplirse?',
+     o:[['Que cualquier supervisor pueda dar órdenes para agilizar','Eso mantiene el problema de las órdenes cruzadas.'],['Que cada operario responda a un único supervisor y la comunicación no salte niveles','Correcto. Es el mando único de la estructura jerárquica.'],['Eliminar a los supervisores','La jerárquica se basa en niveles de autoridad: sin ellos pierde sentido.']],c:1},
+    {q:'En una estructura matricial de automatización, ¿cómo se reparten las responsabilidades?',
+     o:[['El jefe funcional organiza tiempos y recursos; el jefe de proyecto asegura la calidad técnica','Está invertido.'],['El jefe de proyecto organiza tiempos, tareas y recursos; el jefe funcional asegura la calidad técnica y que el trabajo sea seguro y esté bien instalado','Correcto. Cada trabajador responde a ambos.'],['Los dos se reparten todo por mitades','No hay reparto de tareas ambiguo: cada jefe tiene su rol.']],c:1},
+    {q:'La planta tiene un plan de mantenimiento preventivo anual bien armado, pero nadie lo ejecuta y las paradas llegan al 18%. ¿Qué falla?',
+     o:[['La administración, porque el plan es malo','El plan existe y está bien armado.'],['La gestión: el plan no se lleva a la acción ni se coordina su ejecución','Correcto. Administrar es planificar y organizar; gestionar es ejecutar el plan en la práctica.'],['Es un problema solo técnico de las máquinas','Es un problema de gestión y no solamente técnico.']],c:1},
+    {q:'Un rodamiento defectuoso aparece en un motor. Hay que saber a quién reclamarle y en qué otros equipos se instalaron rodamientos del mismo lote. ¿Qué trazabilidad se necesita?',
+     o:[['Interna para ambas cosas','La interna muestra movimientos dentro del depósito, no el origen ni el uso.'],['Hacia atrás para el proveedor y hacia adelante para los otros equipos','Correcto. Hacia atrás: de dónde viene. Hacia adelante: dónde se utilizó.'],['Hacia adelante para el proveedor y hacia atrás para los equipos','Está invertido.']],c:1},
+    {q:'Una empresa con cuatro sectores lejanos entre sí tarda mucho en entregar repuestos desde su único depósito. ¿Qué conviene y qué riesgo trae?',
+     o:[['Depósitos descentralizados: respuesta rápida y menos transporte interno, con riesgo de duplicar stock','Correcto. Es la ventaja y la desventaja típica del modelo descentralizado.'],['Seguir centralizado: no hay desventajas','El depósito único puede generar demoras y depender de un solo punto.'],['Descentralizar sin control de stock','Justamente el riesgo es el stock duplicado y la dificultad de controlarlo.']],c:0}]},
+  {id:'m6b', hard:true, type:'calc', title:'Reposición al límite', intro:'Los números ya no son redondos. Punto de reposición = (consumo semanal × entrega) + mínimo.',
+   cases:[{txt:'Consumo de 12 unidades por semana, entrega en 2 semanas, stock mínimo 20 y hay 50 en el depósito.',c:12,t:2,m:20,a:50},
+    {txt:'Consumo de 7 por semana, entrega en 4 semanas, mínimo 15 y hay 40.',c:7,t:4,m:15,a:40},
+    {txt:'Consumo de 9 por semana, entrega en 3 semanas, mínimo 18 y hay 44.',c:9,t:3,m:18,a:44}]},
+  {id:'m6c', hard:true, type:'classify', title:'Trazabilidad y stock sin pistas', cats:['Traz. hacia atrás','Traz. interna','Traz. hacia adelante','Stock mínimo','Stock máximo','Punto de reposición'],
+   intro:'Seis categorías que se parecen. Piense qué dato describe cada una.',
+   items:[
+    ['Saber qué proveedor entregó un lote',0,'Origen del material: trazabilidad hacia atrás.'],
+    ['Registrar que un repuesto pasó del estante A al B',1,'Movimientos dentro del depósito: trazabilidad interna.'],
+    ['Saber en qué máquina se instaló un repuesto',2,'Destino y uso: trazabilidad hacia adelante.'],
+    ['Cantidad que dispara la compra para no correr riesgos de quedarse sin material',5,'Es la cantidad suficiente para reponer sin riesgos: punto de reposición.'],
+    ['Límite de elementos que se pueden tener por espacio físico o cantidad de uso',4,'Es el tope del depósito: stock máximo.'],
+    ['Lo mínimo que se puede tener sin quedarse sin material',3,'Es el stock de seguridad: stock mínimo.'],
+    ['Fecha de ingreso, cantidad y ubicación registradas al recibir',1,'Son datos internos del depósito: trazabilidad interna.']]},
+  {id:'m6d', hard:true, type:'scenario', title:'Caso final: la planta infernal', intro:'Todo junto: calidad, ISO 9001, FODA y gestión.',
+   qs:[
+    {q:'Una planta tiene 15% de piezas defectuosas, 18% de paradas no planificadas, cada operario controla distinto y no hay registros. ¿Qué diagnóstico es más completo?',
+     o:[['Es solo un problema técnico de maquinaria','Hay falta de planeamiento, de procesos estandarizados y de registros: no es solo técnico.'],['Falla de procesos y de administración: mantenimiento reactivo, sin procedimientos ni registros, lo que genera desperdicio, retrasos y pérdidas','Correcto. Es calidad de proceso y de planeamiento preventivo.'],['Es un problema de producto únicamente','Las piezas defectuosas son el síntoma; la causa está en cómo se trabaja.']],c:1},
+    {q:'Para que cada operario controle igual, ¿qué documento conviene y qué acción CAME representa?',
+     o:[['Un manual, como acción de Mantener','El problema es una debilidad puntual: no se trata de mantener.'],['Un procedimiento estandarizado, como acción de Corregir una debilidad','Correcto. Estandariza orden y pasos del control para que sea repetible.'],['Una norma nueva, como acción de Explotar','Las normas son referencias externas y aquí se necesita corregir una debilidad interna.']],c:1},
+    {q:'¿Qué combinación evita a la vez defectos y paradas, según los apuntes?',
+     o:[['Descartar piezas defectuosas al final de la jornada','Se detecta tarde y se desperdician insumos.'],['Mantenimiento preventivo y controles durante el proceso, con herramientas calibradas y registros','Correcto. Previene fallas, detecta errores a tiempo y asegura un proceso eficaz, eficiente y repetible.'],['Comprar más stock de materia prima','Más stock no corrige el proceso.']],c:1}]}
+ ]}
+];
+
+/* Glosario / apunte rápido: [título, [puntos]] */
+const GL = [
+ ['Calidad',['Grado en que un producto, servicio o proceso cumple requisitos establecidos y satisface necesidades.','Producto: resultado final (materias primas, medidas, terminaciones).','Proceso: cómo se trabaja (estandarización, herramientas calibradas, inspecciones).','Proceso de calidad: eficaz (logra el resultado), eficiente (optimiza recursos), repetible (mismo resultado siempre).']],
+ ['Norma, procedimiento y manual',['Norma: requisitos auditables de referencia (ej. ISO 9001).','Procedimiento: secuencia ordenada de pasos para una tarea específica.','Manual: documento general de un área con políticas, responsabilidades y varios procedimientos.']],
+ ['ISO 9000 vs ISO 9001: la comparación clave',[
+  '<b>Norma:</b> conjunto de requisitos o reglas que sirven como referencia para realizar actividades de forma ordenada y uniforme. Permiten estandarizar procesos, mejorar la calidad, incrementar la seguridad y facilitar auditorías.',
+  '<b>Familia ISO:</b> ISO 9001 (gestión de calidad), ISO 14001 (gestión ambiental) e ISO 45001 (seguridad y salud ocupacional).',
+  '<b>ISO 9000:</b> base conceptual. Establece fundamentos y vocabulario relacionados con los sistemas de gestión de calidad. Ayuda a comprender conceptos, principios y términos. <i>No es para certificar.</i>',
+  '<b>ISO 9001:</b> establece los <b>requisitos</b> que debe cumplir un sistema de gestión de calidad. Es la norma que una organización usa como referencia para implementar y demostrar que posee un SGC conforme a sus requisitos. <i>Es la auditable.</i>',
+  '<b>Truco para el examen:</b> 9000 = "qué significa" (conceptos y vocabulario). 9001 = "qué hay que cumplir" (requisitos auditables).',
+  '<b>Ejemplo:</b> si te piden definir qué es "proceso" o "conformidad", es ISO 9000. Si te piden qué requisitos debe cumplir la empresa para demostrar calidad, es ISO 9001.']],
+ ['Familia ISO 9000: para qué sirve',[
+  'Su fin es que una organización tenga un sistema capaz de: organizar procesos, establecer requisitos, controlar las acciones, detectar problemas, mejorar continuamente y buscar la satisfacción del cliente.',
+  'Idea fundamental: la calidad no depende solamente del producto final, sino también de cómo está organizada y controlada la empresa.',
+  'Los 7 principios de gestión de calidad de ISO 9000: enfoque al cliente, liderazgo, compromiso de las personas, enfoque a procesos, mejora, toma de decisiones basada en evidencia y gestión de las relaciones.']],
+ ['Sistema de Gestión de Calidad (SGC)',[
+  'Conjunto de elementos, procesos, procedimientos, responsabilidades y recursos que usa una organización para dirigir y controlar actividades relacionadas con la calidad.',
+  'No es solamente un documento: es una forma organizada de gestionar una empresa.',
+  'Flujo (ejemplo bomba industrial): Entrada (materiales, insumos, planos, especificaciones) → Proceso (fabricación) → Control (verificación, inspección, mediciones) → Salida (bomba terminada) → Cliente (aprobación).']],
+ ['FODA: qué es y cada letra',[
+  '<b>Qué es:</b> herramienta de planificación estratégica aplicable a empresas o proyectos. Permite evaluar la situación actual de lo que estamos analizando.',
+  '<b>Análisis INTERNO (lo que controlamos):</b>',
+  '<b>F - Fortalezas:</b> capacidades, recursos, ventajas competitivas o habilidades que destacan a la organización frente a la competencia. <i>Ej.: buena comunicación, trabajo en equipo, buenos materiales, proactividad, diversidad de conocimientos.</i>',
+  '<b>D - Debilidades:</b> recursos de los que se carece, procesos ineficientes o desventajas que limitan el rendimiento. <i>Ej.: falta de material, falta de conocimiento en algunas áreas, muchas personas para una tarea, poco tiempo.</i>',
+  '<b>Análisis EXTERNO (lo que viene del entorno):</b>',
+  '<b>O - Oportunidades:</b> tendencias del mercado, cambios tecnológicos o situaciones favorables del entorno. <i>Ej.: grupos más avanzados de los que aprender, nuevas tecnologías disponibles.</i>',
+  '<b>A - Amenazas:</b> factores externos que ponen en riesgo el proyecto o negocio. <i>Ej.: competidores con más recursos o proyectos más innovadores.</i>',
+  '<b>Regla de oro:</b> F y D son internas (las podemos cambiar). O y A son externas (no dependen de nosotros, pero podemos prepararnos).']],
+ ['FODA: pasos y matriz 2x2',[
+  '1) Definir un objetivo claro.',
+  '2) Construir un cuadro para identificar todos los elementos, normalmente una matriz de 2x2.',
+  '3) Generar ideas en equipo (brainstorming honesto) para identificar cada punto.',
+  '4) Pasar a la acción aplicando CAME, que es el complemento del FODA.',
+  'Matriz: filas = Interno (F y D) y Externo (O y A). Columnas = Positivo (F y O) y Negativo (D y A).']],
+ ['CAME: del diagnóstico a la acción',[
+  '<b>C - Corregir</b> las <b>D</b>ebilidades (ej.: capacitar al personal donde falta conocimiento, conseguir el material que falta).',
+  '<b>A - Afrontar</b> las <b>A</b>menazas (ej.: plan de contingencia ante un competidor o proveedor).',
+  '<b>M - Mantener</b> las <b>F</b>ortalezas (ej.: sostener el trabajo en equipo y la buena comunicación).',
+  '<b>E - Explotar</b> las <b>O</b>portunidades (ej.: adoptar una tecnología nueva del mercado).',
+  '<b>Cómo recordarlo:</b> Debilidad → Corregir. Amenaza → Afrontar. Fortaleza → Mantener. Oportunidad → Explotar. Se cruzan con el orden de CAME: C-D, A-A, M-F, E-O.']],
+ ['FODA + CAME + ISO 9001: la conexión',[
+  'ISO 9001 exige que la organización <b>analice su contexto</b> (cuestiones internas y externas) y que <b>gestione los riesgos y oportunidades</b>.',
+  'El <b>FODA diagnostica ese contexto</b>: lo interno (F y D) y lo externo (O y A).',
+  '<b>CAME lo convierte en acciones</b> preventivas y de mejora continua dentro del SGC.',
+  'Referencia: en ISO 9001:2015, el contexto está en el capítulo 4, los riesgos y oportunidades en el 6.1 y la mejora en el capítulo 10.',
+  'Ejemplo: Debilidad = operarios controlan la calidad cada uno a su manera → Acción CAME (Corregir) = elaborar un procedimiento estandarizado → Resultado = proceso repetible y auditable.']],
+ ['ISO 9001 en mantenimiento (motor trifásico)',['Previo: tag, historial, procedimientos, LOTO/EPP, megóhmetro y pinza calibrados.','Durante: limpieza, cambio de rodamientos, medir y registrar aislamiento y continuidad, anomalías.','Luego: corriente de arranque/marcha, vibraciones, cerrar orden y actualizar historial.']],
+ ['Organización',['Administrar: planificar y organizar recursos. Gestionar: ejecutar el plan.','Jerárquica: piramidal, mando único, sin saltar niveles.','Plana: horizontal, sin mandos intermedios, ágil en grupos chicos.','Matricial: jefe funcional + jefe de proyecto; optimiza recursos, exige coordinación.']],
+ ['Depósitos, trazabilidad y stock',['Centralizado: único, fácil control, riesgo de demoras. Descentralizado: varios, rápido, riesgo de duplicar stock.','Trazabilidad hacia atrás (origen), interna (movimientos), hacia adelante (destino).','Stock mínimo (seguridad), máximo (tope). Punto de reposición = (consumo semanal × tiempo de entrega) + stock mínimo.']]
+];
+
+/* =====================  MOTOR DE LA APLICACIÓN  ===================== */
+const KEY='tallerCalidad_v1', $=s=>document.querySelector(s), app=$('#app');
+const fresh=()=>({done:{},score:0,streak:0,best:0});
+let S; try{S=JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){S=fresh()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+let HARD=false;
+const ALL=MODS.flatMap(m=>m.acts);
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);
+const COL=['#58cc02','#1cb0f6','#ff9600','#ce82ff'],COLH=['#ff5a1f','#c2185b','#7b1fa2','#ff9800'];let cur,HM=5,H=5,ac,mute=false;
+const AC=window.AudioContext||window.webkitAudioContext;
+const snd=(f,t=.12)=>{if(mute||!AC)return;try{ac=ac||new AC();f.forEach((fr,k)=>{const o=ac.createOscillator(),g=ac.createGain(),T=ac.currentTime+k*t;o.frequency.value=fr;o.type='triangle';g.gain.setValueAtTime(.12,T);g.gain.exponentialRampToValueAtTime(.001,T+t);o.connect(g);g.connect(ac.destination);o.start(T);o.stop(T+t)})}catch(e){}};
+const lvl=()=>Math.floor(S.score/100)+1;
+const toast=t=>{const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),2000)};
+const confetti=n=>{const c=['#58cc02','#1cb0f6','#ffc800','#ff4b4b','#ce82ff','#ff9600'];for(let k=0;k<n;k++){const d=document.createElement('i');d.className='cf';d.style.cssText=`left:${Math.random()*100}vw;background:${c[k%6]};--x:${Math.random()*200-100}px;--r:${Math.random()*720}deg;--d:${1.4+Math.random()*1.6}s`;document.body.append(d);setTimeout(()=>d.remove(),3200)}};
+const hearts=()=>{const e=$('#hh');if(e)e.textContent='❤️'.repeat(Math.max(H,0))+'🖤'.repeat(HM-Math.max(H,0))};
+const setP=f=>{const e=$('#lpb');if(e)e.style.width=f*100+'%'};
+const hit=p=>{p*=HARD?2:1;const l=lvl();S.score+=p;S.streak++;S.best=Math.max(S.best,S.streak);save();hud();snd([660,880]);
+ const x=document.createElement('div');x.className='xp';x.textContent='+'+p+' XP';x.style.cssText='left:'+(innerWidth/2-35)+'px;top:'+(innerHeight*.55)+'px';document.body.append(x);setTimeout(()=>x.remove(),900);
+ if(lvl()>l){toast('🎉 ¡Nivel '+lvl()+'!');confetti(120);snd([523,659,784,1046],.15)}else if(S.streak%5==0){toast('🔥 ¡Racha de '+S.streak+'!');confetti(40)}};
+const miss=()=>{S.streak=0;H--;save();hud();hearts();snd([220,160],.18);if(H<=0)setTimeout(over,700)};
+const over=()=>{const o=document.createElement('div');o.className='ov';o.innerHTML='<div><div class="big2">💔</div><h2>¡Te quedaste sin vidas!</h2><p>Repasá el apunte y volvé a intentarlo.</p><button class="pri" id="o1">Reintentar</button> <button id="o2">Apunte rápido</button></div>';document.body.append(o);$('#o1').onclick=()=>{o.remove();open(cur)};$('#o2').onclick=()=>$('#dlg').showModal()};
+const finish=id=>{S.done[id]=1;save();hud()};
+function hud(){const n=Object.keys(S.done).length;
+ $('#hS').textContent='💎 Nv '+lvl()+' · '+S.score+' XP';$('#hR').textContent='🔥 Racha '+S.streak+' (mejor '+S.best+')';$('#hP').textContent='✔ '+ALL.filter(a=>!!a.hard===HARD&&S.done[a.id]).length+'/'+ALL.filter(a=>!!a.hard===HARD).length}
+const fb=(ok,t,x)=>`<div class="fb ${ok?'ok':'no'}"><b>${ok?'✔ Correcto':'✘ Revisemos el concepto'}</b>${t}${x||''}</div>`;
+
+function home(){
+ const L=ALL.filter(a=>!!a.hard===HARD),n=L.filter(a=>S.done[a.id]).length,mods=MODS.filter(m=>!!m.hard===HARD),P=HARD?COLH:COL;
+ const msg=HARD?(n==L.length?'¡Sobreviviste al infierno! Muajaja.':'¡Muajaja! Acá cada error duele. Todo vale el doble de XP.'):(n==L.length?'¡Completaste todo! Sos una máquina de calidad.':n?'¡Seguí así! Te faltan '+(L.length-n)+' lecciones.':'¡Hola! Empecemos tu primera lección.');
+ app.innerHTML=`<div class="mas"><span class="o${HARD?' dv':''}">🦉</span><div>${msg}<div class="prog"><i style="width:${n/L.length*100}%"></i></div><small>Nivel ${lvl()} · ${S.score%100}/100 XP para el próximo${HARD?' · ⚡ x2 XP':''}</small></div></div>`+mods.map((m,mi)=>`
+ <section class="card" style="--c:${P[mi]};animation-delay:${mi*.12}s"><div class="mh"><h2>${m.ic} ${m.name}</h2><small>${m.tag}</small></div>
+ <div class="acts">${m.acts.map(a=>`<button data-id="${a.id}" class="${S.done[a.id]?'done':''}"><span>${a.title}</span><span>${S.done[a.id]?'⭐':'▶'}</span></button>`).join('')}</div></section>`).join('');
+ app.querySelectorAll('.acts button').forEach(b=>b.onclick=()=>open(b.dataset.id));
+}
+function open(id){
+ const a=ALL.find(x=>x.id===id);
+ HM=H=a.hard?3:5;cur=id;app.innerHTML=`<div class="top"><button class="back">✕</button><div class="lp"><i id="lpb"></i></div><span id="hh"></span></div><section class="card"><h2 style="margin:0">${a.title}</h2><p style="color:var(--mut)">${a.intro||''}</p><div id="box"></div></section>`;hearts();
+ app.querySelector('.back').onclick=home;
+ ({classify,sequence,scenario,calc})[a.type](a,$('#box'));
+ scrollTo(0,0);
+}
+function end(a,box,msg){
+ const first=!S.done[a.id];if(first)hit(20);finish(a.id);setP(1);confetti(90);snd([523,659,784,1046],.15);
+ box.innerHTML=`<div style="text-align:center"><div class="big2">🏆</div><h2>¡Lección completa!</h2><div class="fb ok">${msg||''}${first?'<br>+20 XP de bonus ⭐':''}</div><p><button class="pri" id="e1">Continuar</button></p></div>`;
+ $('#e1').onclick=home;
+}
+
+/* 1) Clasificador rápido */
+function classify(a,box){
+ const q=shuf(a.items);let i=0,h=0;
+ const show=()=>{
+  setP(i/q.length);if(i>=q.length)return end(a,box,`Acertó ${h} de ${q.length} a la primera.`);
+  box.innerHTML=`<small>Tarjeta ${i+1} de ${q.length}</small><div class="tok">${q[i][0]}</div><div class="opts row">${a.cats.map((c,k)=>`<button data-k="${k}">${c}</button>`).join('')}</div><div id="f"></div>`;
+  box.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{
+   const k=+b.dataset.k,ok=k===q[i][1];
+   box.querySelectorAll('.opts button').forEach(x=>{x.disabled=true;if(+x.dataset.k===q[i][1])x.classList.add('ok')});
+   if(ok){hit(10);h++}else{miss();b.classList.add('no')}
+   $('#f').innerHTML=fb(ok,(ok?'':`Corresponde a <b style="display:inline">${a.cats[q[i][1]]}</b>. `)+q[i][2])+`<p><button class="pri" id="n">Siguiente</button></p>`;
+   $('#n').onclick=()=>{i++;show()};
+  });
+ };show();
+}
+
+/* 2) Constructor de secuencias */
+function sequence(a,box){
+ const n=a.steps.length;let order=shuf(a.steps.map((_,k)=>k)),pick=[];
+ const draw=(res)=>{setP(pick.length/n);
+  box.innerHTML=`<p class="big">Toque los pasos en el orden correcto</p>
+  <div class="pool">${order.filter(k=>!pick.includes(k)).map(k=>`<button data-k="${k}">${a.steps[k]}</button>`).join('')||'<i>Todos los pasos colocados</i>'}</div>
+  <ol class="seq">${pick.map((k,p)=>`<li class="${res?(k===p?'ok':'no'):''}">${a.steps[k]}</li>`).join('')}</ol>
+  <button class="pri" id="ck" ${pick.length<n?'disabled':''}>Comprobar</button> <button id="rs">Reiniciar</button><div id="f"></div>`;
+  box.querySelectorAll('.pool button').forEach(b=>b.onclick=()=>{pick.push(+b.dataset.k);draw()});
+  $('#rs').onclick=()=>{pick=[];order=shuf(order);draw()};
+  $('#ck').onclick=()=>{
+   const wrong=pick.filter((k,p)=>k!==p).length;
+   if(!wrong){hit(20);finish(a.id);confetti(70);draw(true);$('#f').innerHTML=fb(true,a.why)+'<p><button class="pri" id="n">Volver al menú</button></p>';$('#n').onclick=home;$('#ck').disabled=true}
+   else{miss();draw(true);$('#f').innerHTML=fb(false,`${wrong} paso(s) fuera de lugar. El orden correcto es:`,`<ol class="seq">${a.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${a.why}`)+'<p><button id="rt">Intentar de nuevo</button></p>';$('#rt').onclick=()=>{pick=[];order=shuf(order);draw()}}
+  };
+ };draw();
+}
+
+/* 3) Simulador de consultor industrial */
+function scenario(a,box){
+ let i=0,h=0;
+ const show=()=>{
+  setP(i/a.qs.length);if(i>=a.qs.length)return end(a,box,`Aciertos a la primera: ${h} de ${a.qs.length}.`);
+  const Q=a.qs[i];
+  box.innerHTML=`<small>Escenario ${i+1} de ${a.qs.length}</small><p class="big">${Q.q}</p><div class="opts">${Q.o.map((o,k)=>`<button data-k="${k}">${o[0]}</button>`).join('')}</div><div id="f"></div>`;
+  box.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{
+   const k=+b.dataset.k,ok=k===Q.c;
+   box.querySelectorAll('.opts button').forEach(x=>{x.disabled=true;if(+x.dataset.k===Q.c)x.classList.add('ok')});
+   if(ok){hit(15);h++}else{miss();b.classList.add('no')}
+   $('#f').innerHTML=fb(ok,ok?Q.o[k][1]:`<b style="display:inline">Error conceptual:</b> ${Q.o[k][1]}<br><b style="display:inline">Opción correcta:</b> ${Q.o[Q.c][1]}`)+`<p><button class="pri" id="n">Continuar</button></p>`;
+   $('#n').onclick=()=>{i++;show()};
+  });
+ };show();
+}
+
+/* 4) Reto de cálculo de depósito */
+function calc(a,box){
+ let i=0;
+ const show=()=>{
+  setP(i/a.cases.length);if(i>=a.cases.length)return end(a,box,'Dominó la fórmula del punto de reposición.');
+  const C=a.cases[i];
+  box.innerHTML=`<small>Caso ${i+1} de ${a.cases.length}</small><p class="big">${C.txt}</p>
+  <div class="grid2"><div><label for="pr">Punto de reposición (unidades)</label><input id="pr" type="number" inputmode="numeric"></div>
+  <div><label for="de">Decisión</label><select id="de"><option value="">Elegir…</option><option value="b">Emitir orden de compra ya</option><option value="n">Todavía no comprar</option></select></div></div>
+  <p><button class="pri" id="ck">Validar</button></p><div id="f"></div>`;
+  $('#ck').onclick=()=>{
+   const pr=C.c*C.t+C.m,buy=C.a<=pr,v=$('#pr').value,d=$('#de').value;
+   if(v===''||!d){$('#f').innerHTML=fb(false,'Complete el cálculo y elija una decisión.');return}
+   const okP=+v===pr,okD=(d==='b')===buy,ok=okP&&okD;
+   ok?hit(25):miss();
+   const exp=`Punto de reposición = (${C.c} × ${C.t}) + ${C.m} = <b style="display:inline">${pr}</b>. Hay ${C.a}, que es ${buy?'menor o igual':'mayor'} que ${pr}: ${buy?'hay que comprar ya, porque si no se llegaría al stock mínimo antes de que llegue el pedido':'todavía hay margen, el pedido puede esperar'}.`;
+   const parts=(!okP?'El cálculo no coincide. ':'')+(!okD?'La decisión no es la correcta según el cálculo. ':'');
+   $('#f').innerHTML=fb(ok,(ok?'':parts)+exp)+`<p><button class="pri" id="n">${ok?'Continuar':'Seguir de todos modos'}</button></p>`;
+   $('#n').onclick=()=>{i++;show()};
+  };
+ };show();
+}
+
+/* Glosario, reinicio y arranque */
+const KW=[['Fortalezas?|fortalezas?','f'],['Debilidad(?:es)?|debilidades','d'],['Oportunidad(?:es)?|oportunidades','o'],['Amenazas?|amenazas?','a'],['Corregir','d'],['Afrontar','a'],['Mantener','f'],['Explotar','o'],['ISO 9000','n9'],['ISO 9001','n1'],['CAME','cm'],['FODA','fd']];
+const colr=t=>KW.reduce((x,[w,c])=>x.replace(new RegExp('(?<![\\w-])('+w+')(?![\\w-])','g'),`<mark class="k-$2">$1</mark>`.replace('$2',c)),t);
+const ST=t=>/FODA \+/.test(t)?['🔗','#ce82ff']:/CAME/.test(t)?['🚀','#ff9600']:/FODA/.test(t)?['🧭','#1cb0f6']:/mantenimiento/.test(t)?['🔧','#ff9600']:/ISO|Familia|Sistema/.test(t)?['📋','#58cc02']:/Calidad/.test(t)?['⭐','#ffc800']:/Norma/.test(t)?['📑','#1cb0f6']:['📦','#ce82ff'];
+const LC=t=>/^<b>(Truco|Regla|Cómo recordarlo)/.test(t)?'tip':/^<b>Ejemplo|^Ejemplo|^Referencia/.test(t)?'ex':/^<b>Análisis/.test(t)?'sub':/^<b>[FM] - /.test(t)?'lf':/^<b>[DC] - /.test(t)?'ld':/^<b>[OE] - /.test(t)?'lo':/^<b>A - /.test(t)?'la':/^<b>ISO 9000/.test(t)?'ln9':/^<b>ISO 9001/.test(t)?'ln1':'';
+$('#gl').innerHTML=GL.map(g=>{const [ic,c]=ST(g[0]);return `<details class="gd" style="--c:${c}"><summary><span>${ic}</span>${g[0]}</summary><ul>${g[1].map(t=>`<li class="${LC(t)}">${colr(t)}</li>`).join('')}</ul></details>`}).join('');
+$('#bG').onclick=()=>$('#dlg').showModal();
+$('#bC').onclick=()=>$('#dlg').close();
+$('#bX').onclick=()=>{if(confirm('¿Borrar todo el progreso, puntaje y racha?')){S=fresh();save();hud();home()}};
+function warp(on){
+ const r=$('#bH').getBoundingClientRect(),w=document.createElement('div');
+ w.className='warp '+(on?'hot':'cool');w.style.setProperty('--x',r.left+r.width/2+'px');w.style.setProperty('--y',r.top+r.height/2+'px');
+ w.innerHTML=`<div class="wt">${on?'😈<br>MODO DIFÍCIL<small>XP x2 · 3 vidas por lección</small>':'😇<br>Volvamos a la calma<small>Modo normal</small>'}</div>`;
+ document.body.append(w);snd(on?[196,165,131,98]:[392,523,659,784],.2);
+ for(let k=0;k<22;k++){const e=document.createElement('i');e.className='em';e.textContent=on?'🔥':'✨';e.style.cssText=`left:${Math.random()*100}vw;--d:${1.2+Math.random()*1.2}s;animation-delay:${Math.random()*.6}s;font-size:${1.5+Math.random()*2}rem`;w.append(e)}
+ $('main').classList.add('shake');
+ setTimeout(()=>{HARD=on;document.body.classList.toggle('dark',on);$('#ttl').textContent=on?'😈 Taller del Infierno':'🏭 Taller de Calidad';$('#bH').textContent=on?'😇 Modo normal':'🔥 Modo difícil';hud();home()},700);
+ setTimeout(()=>$('main').classList.remove('shake'),900);
+ setTimeout(()=>w.classList.add('out'),1700);setTimeout(()=>w.remove(),2300);
+}
+$('#bH').onclick=()=>{if(!$('.warp'))warp(!HARD)};
+$('#bM').onclick=()=>{mute=!mute;$('#bM').textContent=mute?'🔇':'🔊'};
+hud();home();
+</script>
+</body>
+</html>
